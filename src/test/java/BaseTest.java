@@ -1,6 +1,18 @@
 import java.time.Duration;
 import java.util.List;
 import java.util.Random;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.asserts.SoftAssert;
 
 public class BaseTest {
 
@@ -17,10 +29,11 @@ public class BaseTest {
         wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         //driver.manage().timeouts().implicitWait(Duration.ofSeconds(5));
         softAssert = new SoftAssert();
-        Utils.waitForSeconds(3); //.sleep(3000);
-        // driver.manage().window().maximize();
+       // Utils.waitForSeconds(3); //.sleep(3000);
+        Thread.sleep(3000);
+         driver.manage().window().maximize();
         //driver.get(("https://demowebshop.tricentis.com/"));
-        driver.get(("https://practicesoftwaretesting.com/#/"));
+        driver.get(("https://practicesoftwaretesting.com/#/")); //auth/register
     }
 
 
@@ -91,4 +104,6 @@ public class BaseTest {
                 .build()
                 .perform();
     }
+
+
 }
