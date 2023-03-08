@@ -87,6 +87,34 @@ public class RegistrationTest extends BaseTest{
     }
 
 
+    @Test
+    public void logInTest() throws InterruptedException{
+
+        clickOnElement(signInButton);
+        Thread.sleep(3000);
+
+        typeIn(logInEmailField, "JovanIlic@email.com");
+        typeIn(logInPasswordField, "password123!");
+        clickOnElement(logInSubmit);
+
+        String expectedText1 = "My account";
+        String expectedText2 = "Here you can manage your profile, favorites and orders.";
+
+        String actualText1 = getTextFromElement(confirmationText1);
+        String actualtext2 = getTextFromElement(confirmationText2);
+//        isElementVisible(loggedInUserNameField);
+//        isElementVisible(signOutButton);
+
+        Assert.assertEquals(actualText1, expectedText1, "Tekst 1 nije isti!");
+        Assert.assertEquals(actualtext2, expectedText2, "Tekst 2 nije isti!");
+
+        Assert.assertFalse(isElementVisible(loggedInUserNameField), "Ime usera je prisutno!");
+
+        clickOnElement(loggedInUserNameField);
+        Assert.assertTrue(isElementVisible(signOutButton), "Log out dugme nije pronadjeno!");
+    }
+
+
 
 
 
